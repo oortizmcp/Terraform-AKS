@@ -1,12 +1,3 @@
-terraform {
-  backend "azurerm" {
-    resource_group_name = "oo-akslab"
-    storage_account_name = "oovtfstate"
-    container_name = "tfstate"
-    key = "terraform.state"
-  }
-}
-
 provider azurerm {
   version = "2.0.0"
   features {}
