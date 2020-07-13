@@ -1,0 +1,34 @@
+#
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: 'Terraform-AKS/Az DevOps'
+    commandOptions: '-var="Name=$(Name)" -var="resourceGroup=$(resourceGroup)" -var="clientID=$(clientID)" -var="location=$(location)" -var="clientSecret=$(clientSecret)"'
+    environmentServiceNameAzureRM: 'oo-azlabs'
+    backendServiceArm: 'oo-azlabs'
+    backendAzureRmResourceGroupName: 'azlab'
+    backendAzureRmStorageAccountName: 'oovtfstate'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'terraform.state'
+    
+    
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: 'Terraform-AKS/Az DevOps'
+    commandOptions: '-var="Name=$(Name)" -var="resourceGroup=$(resourceGroup)" -var="clientID=$(clientID)" -var="location=$(location)" -var="clientSecret=$(clientSecret)"'
+    environmentServiceNameAzureRM: 'oo-azlabs'
+    backendServiceArm: 'oo-azlabs'
+    backendAzureRmResourceGroupName: 'azlab'
+    backendAzureRmStorageAccountName: 'oovtfstate'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'terraform.state'
