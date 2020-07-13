@@ -10,7 +10,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: 'Terraform-AKS/Az DevOps'
+    workingDirectory: 'Az DevOps'
     commandOptions: '-var="Name=$(Name)" -var="resourceGroup=$(resourceGroup)" -var="clientID=$(clientID)" -var="location=$(location)" -var="clientSecret=$(clientSecret)"'
     environmentServiceNameAzureRM: 'oo-azlabs'
     backendServiceArm: 'oo-azlabs'
@@ -24,7 +24,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'apply'
-    workingDirectory: 'Terraform-AKS/Az DevOps'
+    workingDirectory: 'Az DevOps'
     commandOptions: '-var="Name=$(Name)" -var="resourceGroup=$(resourceGroup)" -var="clientID=$(clientID)" -var="location=$(location)" -var="clientSecret=$(clientSecret)"'
     environmentServiceNameAzureRM: 'oo-azlabs'
     backendServiceArm: 'oo-azlabs'
