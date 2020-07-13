@@ -1,0 +1,29 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: 'Az DevOps'
+    commandOptions: '- task: TerraformTaskV1@0
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: 'Az DevOps'
+    commandOptions: '-var="Name=$(Name)" -var="resourceGroup=$(resourceGroup)" -var="clientID=$(clientID)" -var="location=$(location)" -var="clientSecret=$(clientSecret)"'
+    environmentServiceNameAzureRM: 'oo-azlabs''
+    backendServiceArm: 'oo-azlabs'
+    backendAzureRmResourceGroupName: 'azlab'
+    backendAzureRmStorageAccountName: 'oovtfstate'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'terraform.state'
